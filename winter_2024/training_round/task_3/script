@@ -1,0 +1,15 @@
+#!/bin/bash
+mkdir my_answers
+
+# Отправляются тестовые файлы на вход программе. Результат записывается в директорию my_answers.
+for file in ./test_files/*;
+do
+    cat "$file" | go run task_3.go  > ./my_answers/`basename "$file"`.a
+done
+# Сравнение заведомо верных ответов и полученных ответов в результате работы программы.
+# Если между названиями файлов есть какие-то строки, то присутствует ошибка.
+for file in ./ozon_answers/*;
+do
+    echo `basename "$file"`
+    diff "$file" ./my_answers/`basename "$file"`
+done
