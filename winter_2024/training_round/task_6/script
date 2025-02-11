@@ -1,0 +1,8 @@
+#!/bin/bash
+mkdir my_answers
+
+# Отправляются тестовые файлы на вход программе. Результат записывается в директорию my_answers.
+for file in ./test_files/*;
+do
+    cat "$file" | go run task_6.go  > ./my_answers/`basename "$file"`.a
+done
